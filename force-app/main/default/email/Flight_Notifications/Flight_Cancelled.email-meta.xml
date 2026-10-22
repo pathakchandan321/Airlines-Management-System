@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Flight Cancelled Notification</name>
+    <style>none</style>
+    <subject>CANCELLED: Flight {!Flight_Schedule__c.Name}</subject>
+    <textOnly>Flight Cancellation Alert:
+
+Flight: {!Flight_Schedule__c.Flight__c}
+Route: {!Flight_Schedule__c.Source_Name__c} to {!Flight_Schedule__c.Destination_Name__c}
+Originally Scheduled: {!Flight_Schedule__c.Departure_Date_Time__c}
+Status: CANCELLED
+
+Please contact operations for rescheduling.
+
+This is an automated notification from Airlines Management System.</textOnly>
+    <type>text</type>
+</EmailTemplate>

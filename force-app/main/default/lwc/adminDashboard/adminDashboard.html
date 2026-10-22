@@ -1,0 +1,119 @@
+<template>
+    <template if:true={isLoading}>
+        <div class="slds-spinner_container">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <template if:false={isLoading}>
+        <div class="admin-dashboard">
+            <!-- Header with User Info -->
+            <div class="dashboard-header slds-m-bottom_medium">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-page-header">
+                            <div class="slds-page-header__row">
+                                <div class="slds-page-header__col-title">
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-standard-dashboard">
+                                                <lightning-icon icon-name="standard:dashboard" size="large" alternative-text="Dashboard"></lightning-icon>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <div class="slds-page-header__name">
+                                                <div class="slds-page-header__name-title">
+                                                    <h1>
+                                                        <span class="slds-page-header__title slds-truncate" title="Admin Dashboard">Admin Dashboard</span>
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                            <p class="slds-page-header__name-meta">Manage flights, schedules, and view analytics</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-page-header__col-actions">
+                                    <div class="slds-page-header__controls">
+                                        <div class="slds-page-header__control">
+                                            <div class="user-info-container">
+                                                <div class="slds-media slds-media_center">
+                                                    <div class="slds-media__figure">
+                                                        <span class="slds-avatar slds-avatar_circle slds-avatar_medium">
+                                                            <lightning-icon icon-name="standard:user" size="small"></lightning-icon>
+                                                        </span>
+                                                    </div>
+                                                    <div class="slds-media__body slds-m-right_small">
+                                                        <div class="slds-text-heading_small">{userName}</div>
+                                                        <div class="slds-text-body_small slds-text-color_weak">{userEmail}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-page-header__control">
+                                            <lightning-button
+                                                variant="destructive"
+                                                label="Logout"
+                                                icon-name="utility:logout"
+                                                onclick={handleLogout}>
+                                            </lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <lightning-tabset variant="scoped" class="slds-m-bottom_medium">
+                <!-- Overview Tab -->
+                <lightning-tab label="Overview" icon-name="standard:home">
+                    <div class="slds-p-around_medium">
+                        <!-- Analytics Summary -->
+                        <div class="slds-m-bottom_medium">
+                            <c-analytics-summary></c-analytics-summary>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="slds-grid slds-gutters slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                <lightning-card title="Recent Bookings" icon-name="standard:orders">
+                                    <div class="slds-p-around_medium">
+                                        <c-booking-console></c-booking-console>
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-tab>
+
+                <!-- Flight Management Tab -->
+                <lightning-tab label="Flight Management" icon-name="standard:travel_and_places">
+                    <div class="slds-p-around_medium">
+                        <c-admin-flight-management></c-admin-flight-management>
+                    </div>
+                </lightning-tab>
+
+                <!-- Analytics Tab -->
+                <lightning-tab label="Analytics" icon-name="standard:reports">
+                    <div class="slds-p-around_medium">
+                        <lightning-card title="Flight Analytics" icon-name="standard:analytics">
+                            <div class="slds-p-around_medium">
+                                <c-analytics-summary></c-analytics-summary>
+                            </div>
+                        </lightning-card>
+
+                        <div class="slds-m-top_medium">
+                            <lightning-card title="Booking Console" icon-name="standard:orders">
+                                <div class="slds-p-around_medium">
+                                    <c-booking-console></c-booking-console>
+                                </div>
+                            </lightning-card>
+                        </div>
+                    </div>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+    </template>
+</template>

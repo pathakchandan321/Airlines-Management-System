@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Airlines Management System</label>
+    <navType>Standard</navType>
+    <formFactors>Large</formFactors>
+    <formFactors>Small</formFactors>
+    <tabs>Flight__c</tabs>
+    <tabs>Flight_Schedule__c</tabs>
+    <tabs>Pilot__c</tabs>
+    <tabs>Pilot_Schedule__c</tabs>
+    <tabs>Passenger__c</tabs>
+    <tabs>Booking__c</tabs>
+    <tabs>Payment__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

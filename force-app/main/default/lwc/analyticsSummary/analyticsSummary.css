@@ -1,0 +1,65 @@
+.metric {
+    min-height: 76px;
+    padding: 0.75rem;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    background: #f8f9fb;
+}
+
+.metric span,
+.metric strong {
+    display: block;
+}
+
+.metric span {
+    color: #5c5c5c;
+    font-size: 0.75rem;
+}
+
+.metric strong {
+    margin-top: 0.35rem;
+    color: #032d60;
+    font-size: 1.25rem;
+}
+
+.chart {
+    padding: 0.85rem;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    background: #fff;
+}
+
+.chart h3 {
+    color: #032d60;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.bar-row {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr 2rem;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.55rem;
+    font-size: 0.75rem;
+}
+
+.bar-track {
+    height: 0.65rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #e5e5e5;
+}
+
+.bar {
+    height: 100%;
+    border-radius: 0.5rem;
+}
+
+.status-bar {
+    background: #2e844a;
+}
+
+.flight-bar {
+    background: #1b96ff;
+}

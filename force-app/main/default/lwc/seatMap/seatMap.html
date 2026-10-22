@@ -1,0 +1,134 @@
+<template>
+    <div class="seat-map-container">
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-text-align_center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading seats" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <!-- Legend -->
+            <div class="slds-m-bottom_medium">
+                <div class="slds-grid slds-wrap slds-gutters_small">
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="legend-item">
+                            <span class="legend-box available"></span>
+                            <span class="slds-text-body_small">Available ({availableCount})</span>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="legend-item">
+                            <span class="legend-box booked"></span>
+                            <span class="slds-text-body_small">Booked ({bookedCount})</span>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="legend-item">
+                            <span class="legend-box selected"></span>
+                            <span class="slds-text-body_small">Selected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airplane Front Indicator -->
+            <div class="airplane-front slds-text-align_center slds-m-bottom_small">
+                <lightning-icon icon-name="utility:forward" size="small"></lightning-icon>
+                <span class="slds-text-body_small slds-m-left_x-small">Front of Aircraft</span>
+            </div>
+
+            <!-- Seat Map -->
+            <div class="seat-layout">
+                <!-- Header Row (Seat Letters) -->
+                <div class="seat-header slds-grid">
+                    <div class="slds-col slds-size_1-of-12"></div>
+                    <div class="slds-col slds-size_5-of-12 slds-text-align_center">
+                        <span class="seat-label">A</span>
+                        <span class="seat-label">B</span>
+                        <span class="seat-label">C</span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-12"></div>
+                    <div class="slds-col slds-size_5-of-12 slds-text-align_center">
+                        <span class="seat-label">D</span>
+                        <span class="seat-label">E</span>
+                        <span class="seat-label">F</span>
+                    </div>
+                </div>
+
+                <!-- Seat Rows -->
+                <template for:each={seatRows} for:item="row">
+                    <div key={row.rowNumber} class="seat-row slds-grid slds-m-bottom_xx-small">
+                        <!-- Row Number -->
+                        <div class="slds-col slds-size_1-of-12 row-number">
+                            <span class="slds-text-body_small">{row.rowNumber}</span>
+                        </div>
+
+                        <!-- Left Seats (A, B, C) -->
+                        <div class="slds-col slds-size_5-of-12 seats-group">
+                            <template for:each={row.leftSeats} for:item="seat">
+                                <button
+                                    key={seat.name}
+                                    class={seat.cssClass}
+                                    data-seat={seat.name}
+                                    onclick={handleSeatClick}
+                                    title={seat.title}
+                                    disabled={seat.disabled}>
+                                    <lightning-icon
+                                        icon-name={seat.iconName}
+                                        size="xx-small">
+                                    </lightning-icon>
+                                    <span class="seat-number">{seat.name}</span>
+                                </button>
+                            </template>
+                        </div>
+
+                        <!-- Aisle -->
+                        <div class="slds-col slds-size_1-of-12 aisle"></div>
+
+                        <!-- Right Seats (D, E, F) -->
+                        <div class="slds-col slds-size_5-of-12 seats-group">
+                            <template for:each={row.rightSeats} for:item="seat">
+                                <button
+                                    key={seat.name}
+                                    class={seat.cssClass}
+                                    data-seat={seat.name}
+                                    onclick={handleSeatClick}
+                                    title={seat.title}
+                                    disabled={seat.disabled}>
+                                    <lightning-icon
+                                        icon-name={seat.iconName}
+                                        size="xx-small">
+                                    </lightning-icon>
+                                    <span class="seat-number">{seat.name}</span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Selected Seat Display -->
+            <template if:true={selectedSeat}>
+                <div class="slds-m-top_medium slds-text-align_center">
+                    <div class="slds-box slds-theme_success">
+                        <p class="slds-text-body_regular">
+                            <lightning-icon icon-name="utility:check" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                            <strong>Selected Seat: {selectedSeat}</strong>
+                        </p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={selectedSeat}>
+                <div class="slds-m-top_medium slds-text-align_center">
+                    <p class="slds-text-color_weak slds-text-body_small">
+                        Please select a seat to continue
+                    </p>
+                </div>
+            </template>
+        </template>
+
+    </div>
+</template>

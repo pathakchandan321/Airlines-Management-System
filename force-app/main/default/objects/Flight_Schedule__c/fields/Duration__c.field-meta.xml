@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Duration__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(FLOOR((Arrival_Date_Time__c - Departure_Date_Time__c) * 24)) &amp; &quot;h &quot; &amp; TEXT(FLOOR(MOD((Arrival_Date_Time__c - Departure_Date_Time__c) * 1440, 60))) &amp; &quot;m&quot;</formula>
+    <label>Duration</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

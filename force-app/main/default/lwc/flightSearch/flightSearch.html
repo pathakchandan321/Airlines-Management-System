@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Flight Search" icon-name="standard:flight">
+        <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <lightning-combobox
+                    label="From"
+                    value={source}
+                    options={cityOptions}
+                    onchange={handleSourceChange}
+                    required>
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <lightning-combobox
+                    label="To"
+                    value={destination}
+                    options={cityOptions}
+                    onchange={handleDestinationChange}
+                    required>
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-top_large">
+                <lightning-button
+                    variant="brand"
+                    label="Search flights"
+                    onclick={handleSearch}>
+                </lightning-button>
+            </div>
+        </div>
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-horizontal_medium">
+                {errorMessage}
+            </div>
+        </template>
+        <template if:true={hasSearched}>
+            <template if:true={hasResults}>
+                <lightning-datatable
+                    key-field="id"
+                    data={results}
+                    columns={columns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+            <template if:false={hasResults}>
+                <p class="slds-p-around_medium">No upcoming flights found for this route.</p>
+            </template>
+        </template>
+    </lightning-card>
+</template>

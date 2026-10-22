@@ -1,0 +1,198 @@
+<template>
+    <div class="login-container">
+        <div class="login-box">
+            <!-- Logo/Header -->
+            <div class="login-header">
+                <lightning-icon icon-name="standard:travel_and_places" size="large"></lightning-icon>
+                <h1 class="slds-text-heading_large slds-m-top_small">Airlines Management</h1>
+                <p class="slds-text-body_regular slds-text-color_weak">Sign in to continue</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-form slds-m-top_large">
+                <template if:false={showRegistration}>
+                    <!-- Email Input -->
+                    <lightning-input
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onchange={handleEmailChange}
+                        required
+                        placeholder="Enter your email">
+                    </lightning-input>
+
+                    <!-- Password Input -->
+                    <lightning-input
+                        type="password"
+                        label="Password"
+                        value={password}
+                        onchange={handlePasswordChange}
+                        required
+                        placeholder="Enter your password"
+                        class="slds-m-top_small">
+                    </lightning-input>
+
+                    <!-- Error Message -->
+                    <template if:true={errorMessage}>
+                        <div class="slds-m-top_small">
+                            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                                <span class="slds-assistive-text">error</span>
+                                <lightning-icon icon-name="utility:error" size="x-small" variant="inverse"></lightning-icon>
+                                <h2>{errorMessage}</h2>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Success Message -->
+                    <template if:true={successMessage}>
+                        <div class="slds-m-top_small">
+                            <div class="slds-notify slds-notify_alert slds-alert_success" role="alert">
+                                <span class="slds-assistive-text">success</span>
+                                <lightning-icon icon-name="utility:success" size="x-small" variant="inverse"></lightning-icon>
+                                <h2>{successMessage}</h2>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Login Button -->
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            variant="brand"
+                            label="Sign In"
+                            onclick={handleLogin}
+                            class="slds-button_stretch"
+                            disabled={isLoading}>
+                        </lightning-button>
+                    </div>
+
+                    <!-- Register Link -->
+                    <div class="slds-m-top_medium slds-text-align_center">
+                        <p class="slds-text-body_small">
+                            Don't have an account?
+                            <a onclick={toggleRegistration} class="slds-text-link">Register here</a>
+                        </p>
+                    </div>
+                </template>
+
+                <!-- Registration Form -->
+                <template if:true={showRegistration}>
+                    <lightning-input
+                        type="text"
+                        label="First Name"
+                        value={firstName}
+                        onchange={handleFirstNameChange}
+                        required
+                        placeholder="Enter your first name">
+                    </lightning-input>
+
+                    <lightning-input
+                        type="text"
+                        label="Last Name"
+                        value={lastName}
+                        onchange={handleLastNameChange}
+                        required
+                        placeholder="Enter your last name"
+                        class="slds-m-top_small">
+                    </lightning-input>
+
+                    <lightning-input
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onchange={handleEmailChange}
+                        required
+                        placeholder="Enter your email"
+                        class="slds-m-top_small">
+                    </lightning-input>
+
+                    <lightning-input
+                        type="tel"
+                        label="Phone"
+                        value={phone}
+                        onchange={handlePhoneChange}
+                        placeholder="Enter your phone number"
+                        class="slds-m-top_small">
+                    </lightning-input>
+
+                    <lightning-input
+                        type="password"
+                        label="Password"
+                        value={password}
+                        onchange={handlePasswordChange}
+                        required
+                        placeholder="Create a password"
+                        class="slds-m-top_small">
+                    </lightning-input>
+
+                    <lightning-input
+                        type="password"
+                        label="Confirm Password"
+                        value={confirmPassword}
+                        onchange={handleConfirmPasswordChange}
+                        required
+                        placeholder="Confirm your password"
+                        class="slds-m-top_small">
+                    </lightning-input>
+
+                    <lightning-combobox
+                        label="User Type"
+                        value={userType}
+                        options={userTypeOptions}
+                        onchange={handleUserTypeChange}
+                        required
+                        placeholder="Select user type"
+                        class="slds-m-top_small">
+                    </lightning-combobox>
+
+                    <!-- Error Message -->
+                    <template if:true={errorMessage}>
+                        <div class="slds-m-top_small">
+                            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                                <span class="slds-assistive-text">error</span>
+                                <lightning-icon icon-name="utility:error" size="x-small" variant="inverse"></lightning-icon>
+                                <h2>{errorMessage}</h2>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Success Message -->
+                    <template if:true={successMessage}>
+                        <div class="slds-m-top_small">
+                            <div class="slds-notify slds-notify_alert slds-alert_success" role="alert">
+                                <span class="slds-assistive-text">success</span>
+                                <lightning-icon icon-name="utility:success" size="x-small" variant="inverse"></lightning-icon>
+                                <h2>{successMessage}</h2>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Register Button -->
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            variant="brand"
+                            label="Register"
+                            onclick={handleRegister}
+                            class="slds-button_stretch"
+                            disabled={isLoading}>
+                        </lightning-button>
+                    </div>
+
+                    <!-- Back to Login Link -->
+                    <div class="slds-m-top_medium slds-text-align_center">
+                        <p class="slds-text-body_small">
+                            Already have an account?
+                            <a onclick={toggleRegistration} class="slds-text-link">Sign in here</a>
+                        </p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer slds-m-top_large">
+                <p class="slds-text-body_small slds-text-color_weak slds-text-align_center">
+                    © 2026 Airlines Management System
+                </p>
+            </div>
+        </div>
+    </div>
+</template>

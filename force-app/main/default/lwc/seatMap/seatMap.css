@@ -1,0 +1,163 @@
+.seat-map-container {
+    padding: 1rem;
+}
+
+/* Legend Styles */
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid #d8dde6;
+    display: inline-block;
+}
+
+.legend-box.available {
+    background-color: #ffffff;
+    border-color: #0176d3;
+}
+
+.legend-box.booked {
+    background-color: #c23934;
+    border-color: #c23934;
+}
+
+.legend-box.selected {
+    background-color: #2e844a;
+    border-color: #2e844a;
+}
+
+/* Airplane Front */
+.airplane-front {
+    padding: 0.5rem;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+}
+
+/* Seat Layout */
+.seat-layout {
+    background-color: #fafaf9;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+}
+
+.seat-header {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d8dde6;
+}
+
+.seat-label {
+    display: inline-block;
+    width: 45px;
+    text-align: center;
+    font-weight: bold;
+    color: #706e6b;
+    font-size: 0.875rem;
+}
+
+/* Row Styles */
+.seat-row {
+    align-items: center;
+}
+
+.row-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #706e6b;
+}
+
+.seats-group {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+.aisle {
+    background: repeating-linear-gradient(
+        to bottom,
+        #e5e5e5,
+        #e5e5e5 2px,
+        transparent 2px,
+        transparent 6px
+    );
+}
+
+/* Seat Button Styles */
+.seat {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #0176d3;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #0176d3;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.seat:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #e8f4fd;
+}
+
+.seat-available {
+    background-color: #ffffff;
+    border-color: #0176d3;
+    color: #0176d3;
+}
+
+.seat-booked {
+    background-color: #c23934;
+    border-color: #c23934;
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.seat-selected {
+    background-color: #2e844a;
+    border-color: #2e844a;
+    color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(46, 132, 74, 0.3);
+}
+
+.seat:disabled {
+    cursor: not-allowed;
+}
+
+.seat-number {
+    font-size: 0.65rem;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .seat {
+        width: 38px;
+        height: 38px;
+    }
+
+    .seat-label {
+        width: 38px;
+    }
+
+    .seat-number {
+        font-size: 0.6rem;
+    }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Distinct_Pilots</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(First_Pilot__c)), First_Pilot__c = Second_Pilot__c)</errorConditionFormula>
+    <errorDisplayField>Second_Pilot__c</errorDisplayField>
+    <errorMessage>First Pilot and Second Pilot must be different.</errorMessage>
+</ValidationRule>

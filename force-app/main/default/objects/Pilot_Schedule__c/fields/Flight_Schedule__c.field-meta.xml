@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Flight_Schedule__c</fullName>
+    <label>Flight Schedule</label>
+    <referenceTo>Flight_Schedule__c</referenceTo>
+    <relationshipLabel>Pilot Schedules</relationshipLabel>
+    <relationshipName>Pilot_Schedules</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>true</writeRequiresMasterRead>
+</CustomField>

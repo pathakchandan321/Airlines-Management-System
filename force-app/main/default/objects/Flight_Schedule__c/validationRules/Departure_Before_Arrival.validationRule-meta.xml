@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Departure_Before_Arrival</fullName>
+    <active>true</active>
+    <description>Departure date/time must be before arrival date/time</description>
+    <errorConditionFormula>Departure_Date_Time__c &gt;= Arrival_Date_Time__c</errorConditionFormula>
+    <errorDisplayField>Departure_Date_Time__c</errorDisplayField>
+    <errorMessage>Departure date/time must be earlier than arrival date/time.</errorMessage>
+</ValidationRule>

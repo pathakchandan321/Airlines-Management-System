@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>BookingSeatValidator</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <fieldPermissions>
+        <editable>true</editable><field>Booking__c.Booking_Status__c</field><readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable><field>Booking__c.Flight__c</field><readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable><field>Booking__c.Passenger__c</field><readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable><field>Booking__c.Seat_Number__c</field><readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable><field>Booking__c.Amount__c</field><readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable><field>Passenger__c.Phone__c</field><readable>true</readable>
+    </fieldPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><object>Booking__c</object><viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate><allowEdit>true</allowEdit><allowRead>true</allowRead><object>Flight__c</object><viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate><allowEdit>true</allowEdit><allowRead>true</allowRead><object>Passenger__c</object><viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <label>Airlines Operations</label>
+</PermissionSet>

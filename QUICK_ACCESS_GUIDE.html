@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airlines Management - Quick Access</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0176d3;
+            text-align: center;
+        }
+        .instructions {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f4fd;
+            border-left: 4px solid #0176d3;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .url {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✈️ Airlines Management System</h1>
+        <h2 style="text-align: center; color: #666;">Quick Access Guide</h2>
+
+        <div class="instructions">
+            <strong>⚠️ Components Load Nahi Ho Rahe?</strong>
+            <p>Yeh guide follow karein to access the application:</p>
+        </div>
+
+        <div class="step">
+            <h3>🔹 Step 1: Salesforce Org Login</h3>
+            <p><strong>URL:</strong></p>
+            <div class="url">https://orgfarm-a440bc4828-dev-ed.develop.my.salesforce.com</div>
+            <p><strong>Username:</strong> chandanpathak2005.fae1d6e8e465@agentforce.com</p>
+        </div>
+
+        <div class="step">
+            <h3>🔹 Step 2: Lightning App Builder Se Page Banayein</h3>
+            <ol>
+                <li>Setup (gear icon) → Quick Find → Type: <code>Lightning App Builder</code></li>
+                <li>Click <strong>"New"</strong> button</li>
+                <li>Select <strong>"App Page"</strong></li>
+                <li>Label: <code>User Booking</code> → Click <strong>Next</strong></li>
+                <li>Choose <strong>"One Region"</strong> template → Click <strong>Done</strong></li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>🔹 Step 3: Component Add Karein</h3>
+            <ol>
+                <li>Left sidebar me <strong>"Custom"</strong> section expand karein</li>
+                <li><code>userDashboard</code> component ko drag karke page par drop karein</li>
+                <li>Top right me <strong>"Save"</strong> button click karein</li>
+                <li><strong>"Activate"</strong> button click karein</li>
+                <li>Choose: <strong>"App Default"</strong> → Add to any app → <strong>Save</strong></li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>🔹 Step 4: Access Page</h3>
+            <p>Ab aap ye page access kar sakte hain:</p>
+            <ol>
+                <li>App Launcher (9 dots) click karein</li>
+                <li>Search: <code>User Booking</code></li>
+                <li>Page open hoga with full booking interface!</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>🔹 Alternative: Sample Data Se Shuru Karein</h3>
+            <p>Agar components nahi dikh rahe, pehle sample data add karein:</p>
+            <ol>
+                <li>Setup → Object Manager → <code>Flight</code></li>
+                <li>"Fields & Relationships" tab</li>
+                <li>New button → Add sample flight records</li>
+                <li>Repeat for Flight Schedules</li>
+            </ol>
+        </div>
+
+        <div class="instructions">
+            <strong>📞 Still Issue?</strong>
+            <p>Agar abhi bhi load nahi ho raha, ye batayein:</p>
+            <ul>
+                <li>Kya error message dikh raha hai?</li>
+                <li>Browser console me koi error?</li>
+                <li>Kis step par stuck hain?</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666;">
+            <p>🎯 <strong>Deployed Components:</strong> 99 | ✅ <strong>Status:</strong> Active</p>
+            <p>📅 Deployment Time: 2026-10-22 09:07 UTC</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Booking Console" icon-name="standard:event">
+        <div class="slds-p-horizontal_medium slds-p-bottom_small">
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                alternative-text="Refresh bookings"
+                title="Refresh bookings"
+                onclick={handleRefresh}
+                class="slds-float_right">
+            </lightning-button-icon>
+        </div>
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-around_medium">
+                {errorMessage}
+            </div>
+        </template>
+        <lightning-datatable
+            key-field="id"
+            data={bookings}
+            columns={columns}
+            hide-checkbox-column
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+    </lightning-card>
+</template>

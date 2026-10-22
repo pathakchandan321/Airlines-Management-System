@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="Airline Analytics" icon-name="standard:dashboard">
+        <div class="slds-p-around_medium">
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-alert_error">
+                    {errorMessage}
+                </div>
+            </template>
+            <template if:false={errorMessage}>
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+                        <div class="metric"><span>Total bookings</span><strong>{metrics.totalBookings}</strong></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+                        <div class="metric"><span>Active bookings</span><strong>{metrics.activeBookings}</strong></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+                        <div class="metric"><span>Cancelled</span><strong>{metrics.cancelledBookings}</strong></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+                        <div class="metric"><span>Active revenue</span><strong>{formattedRevenue}</strong></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+                        <div class="metric"><span>Payments</span><strong>{metrics.totalPayments}</strong></div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters slds-m-top_medium">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <section class="chart">
+                            <h3>Booking status</h3>
+                            <template for:each={statusBars} for:item="item">
+                                <div class="bar-row" key={item.label}>
+                                    <span>{item.label}</span>
+                                    <div class="bar-track">
+                                        <div class="bar status-bar" style={item.width}></div>
+                                    </div>
+                                    <strong>{item.count}</strong>
+                                </div>
+                            </template>
+                        </section>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <section class="chart">
+                            <h3>Flight-wise active bookings</h3>
+                            <template for:each={flightBars} for:item="item">
+                                <div class="bar-row" key={item.label}>
+                                    <span>{item.label}</span>
+                                    <div class="bar-track">
+                                        <div class="bar flight-bar" style={item.width}></div>
+                                    </div>
+                                    <strong title={item.revenueLabel}>{item.bookings}</strong>
+                                </div>
+                            </template>
+                        </section>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

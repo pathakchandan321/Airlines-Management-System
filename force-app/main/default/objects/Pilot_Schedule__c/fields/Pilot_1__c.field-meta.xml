@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pilot_1__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Pilot 1</label>
+    <referenceTo>Pilot__c</referenceTo>
+    <relationshipLabel>Pilot 1 Schedules</relationshipLabel>
+    <relationshipName>Pilot_1_Schedules</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

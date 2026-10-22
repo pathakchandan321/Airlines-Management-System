@@ -1,0 +1,171 @@
+<template>
+    <lightning-card title="Flight Management" icon-name="custom:custom14">
+        <div class="slds-p-around_medium">
+            <!-- Flight List Section -->
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-3">
+                    <lightning-card title="All Flights" icon-name="standard:travel_and_places">
+                        <div slot="actions">
+                            <lightning-button
+                                label="Add New Flight"
+                                variant="brand"
+                                icon-name="utility:add"
+                                onclick={handleNewFlight}>
+                            </lightning-button>
+                        </div>
+                        <div class="slds-p-around_small">
+                            <template if:true={flights.data}>
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={flights.data}
+                                    columns={flightColumns}
+                                    onrowaction={handleFlightRowAction}
+                                    hide-checkbox-column>
+                                </lightning-datatable>
+                            </template>
+                            <template if:true={flights.error}>
+                                <div class="slds-text-color_error">
+                                    Error loading flights: {flights.error.body.message}
+                                </div>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+
+                <!-- Flight Form Section -->
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
+                    <lightning-card title={formTitle} icon-name="utility:edit_form">
+                        <div class="slds-p-around_small">
+                            <lightning-input
+                                label="Flight Name"
+                                value={flightName}
+                                onchange={handleFlightNameChange}
+                                required>
+                            </lightning-input>
+
+                            <lightning-combobox
+                                label="Flight Company"
+                                value={flightCompany}
+                                options={companyOptions}
+                                onchange={handleFlightCompanyChange}
+                                required>
+                            </lightning-combobox>
+
+                            <div class="slds-m-top_medium">
+                                <lightning-button
+                                    label="Save Flight"
+                                    variant="brand"
+                                    onclick={handleSaveFlight}
+                                    class="slds-m-right_small">
+                                </lightning-button>
+                                <template if:true={isEditMode}>
+                                    <lightning-button
+                                        label="Cancel"
+                                        onclick={handleCancel}>
+                                    </lightning-button>
+                                </template>
+                            </div>
+                        </div>
+                    </lightning-card>
+                </div>
+            </div>
+
+            <!-- Flight Schedules Section -->
+            <template if:true={selectedFlightId}>
+                <div class="slds-m-top_medium">
+                    <lightning-card title={scheduleTitle} icon-name="standard:event">
+                        <div slot="actions">
+                            <lightning-button
+                                label="Add Schedule"
+                                variant="brand"
+                                icon-name="utility:add"
+                                onclick={handleNewSchedule}>
+                            </lightning-button>
+                        </div>
+                        <div class="slds-p-around_small">
+                            <template if:true={schedules.data}>
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={schedules.data}
+                                    columns={scheduleColumns}
+                                    onrowaction={handleScheduleRowAction}
+                                    hide-checkbox-column>
+                                </lightning-datatable>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+
+    <!-- Schedule Modal -->
+    <template if:true={showScheduleModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Create Flight Schedule</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-combobox
+                        label="Source"
+                        value={scheduleSource}
+                        options={cityOptions}
+                        onchange={handleScheduleSourceChange}
+                        required>
+                    </lightning-combobox>
+
+                    <lightning-combobox
+                        label="Destination"
+                        value={scheduleDestination}
+                        options={cityOptions}
+                        onchange={handleScheduleDestinationChange}
+                        required>
+                    </lightning-combobox>
+
+                    <lightning-input
+                        type="datetime-local"
+                        label="Departure Date & Time"
+                        value={scheduleDeparture}
+                        onchange={handleScheduleDepartureChange}
+                        required>
+                    </lightning-input>
+
+                    <lightning-input
+                        type="datetime-local"
+                        label="Arrival Date & Time"
+                        value={scheduleArrival}
+                        onchange={handleScheduleArrivalChange}
+                        required>
+                    </lightning-input>
+
+                    <lightning-input
+                        label="First Pilot"
+                        value={scheduleFirstPilot}
+                        onchange={handleScheduleFirstPilotChange}
+                        required>
+                    </lightning-input>
+
+                    <lightning-input
+                        label="Second Pilot"
+                        value={scheduleSecondPilot}
+                        onchange={handleScheduleSecondPilotChange}>
+                    </lightning-input>
+
+                    <lightning-combobox
+                        label="Status"
+                        value={scheduleStatus}
+                        options={statusOptions}
+                        onchange={handleScheduleStatusChange}
+                        required>
+                    </lightning-combobox>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={handleCloseScheduleModal}></lightning-button>
+                    <lightning-button variant="brand" label="Save Schedule" onclick={handleSaveSchedule}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

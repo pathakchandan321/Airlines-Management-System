@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_Age</fullName>
+    <active>true</active>
+    <description>Pilot must be at least 18 years old</description>
+    <errorConditionFormula>Age__c &lt; 18</errorConditionFormula>
+    <errorDisplayField>Date_of_Birth__c</errorDisplayField>
+    <errorMessage>Pilot must be at least 18 years old.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Distinct_Pilots</fullName>
+    <active>true</active>
+    <description>Pilot 1 and Pilot 2 must be different</description>
+    <errorConditionFormula>Pilot_1__c = Pilot_2__c</errorConditionFormula>
+    <errorDisplayField>Pilot_2__c</errorDisplayField>
+    <errorMessage>Pilot 1 and Pilot 2 must be different pilots.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,311 @@
+<template>
+    <lightning-card title="Book Your Flight" icon-name="standard:opportunity">
+        <div class="slds-p-around_medium">
+
+            <!-- Progress Path -->
+            <div class="slds-path slds-m-bottom_medium">
+                <div class="slds-grid slds-path__track">
+                    <div class={step1Class}>
+                        <a class="slds-path__link">
+                            <span class="slds-path__stage">
+                                <lightning-icon icon-name="utility:user" size="x-small"></lightning-icon>
+                            </span>
+                            <span class="slds-path__title">Passenger Details</span>
+                        </a>
+                    </div>
+                    <div class={step2Class}>
+                        <a class="slds-path__link">
+                            <span class="slds-path__stage">
+                                <lightning-icon icon-name="utility:choice" size="x-small"></lightning-icon>
+                            </span>
+                            <span class="slds-path__title">Select Seat</span>
+                        </a>
+                    </div>
+                    <div class={step3Class}>
+                        <a class="slds-path__link">
+                            <span class="slds-path__stage">
+                                <lightning-icon icon-name="utility:payment_gateway" size="x-small"></lightning-icon>
+                            </span>
+                            <span class="slds-path__title">Payment</span>
+                        </a>
+                    </div>
+                    <div class={step4Class}>
+                        <a class="slds-path__link">
+                            <span class="slds-path__stage">
+                                <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                            </span>
+                            <span class="slds-path__title">Confirmation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_medium" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="inverse"></lightning-icon>
+                    <h2>{errorMessage}</h2>
+                </div>
+            </template>
+
+            <!-- Step 1: Passenger Details -->
+            <template if:true={isStep1}>
+                <div class="step-container">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                        <lightning-icon icon-name="standard:contact" size="small" class="slds-m-right_small"></lightning-icon>
+                        Passenger Information
+                    </h2>
+
+                    <div class="slds-form" role="list">
+                        <div class="slds-grid slds-wrap slds-gutters">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input
+                                    label="First Name"
+                                    value={bookingData.firstName}
+                                    onchange={handleFirstNameChange}
+                                    required
+                                    placeholder="Enter first name">
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input
+                                    label="Last Name"
+                                    value={bookingData.lastName}
+                                    onchange={handleLastNameChange}
+                                    required
+                                    placeholder="Enter last name">
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input
+                                    type="email"
+                                    label="Email"
+                                    value={bookingData.email}
+                                    onchange={handleEmailChange}
+                                    required
+                                    placeholder="example@email.com">
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input
+                                    type="tel"
+                                    label="Phone Number"
+                                    value={bookingData.phone}
+                                    onchange={handlePhoneChange}
+                                    required
+                                    placeholder="10-digit mobile number">
+                                </lightning-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            variant="brand"
+                            label="Next: Select Seat"
+                            icon-name="utility:forward"
+                            icon-position="right"
+                            onclick={handleNext}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Step 2: Seat Selection -->
+            <template if:true={isStep2}>
+                <div class="step-container">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                        <lightning-icon icon-name="standard:product" size="small" class="slds-m-right_small"></lightning-icon>
+                        Choose Your Seat
+                    </h2>
+
+                    <div class="slds-box slds-theme_shade slds-m-bottom_medium">
+                        <p class="slds-text-body_regular">
+                            <strong>Selected Seat:</strong>
+                            <template if:true={bookingData.seatNumber}>
+                                <lightning-badge label={bookingData.seatNumber}></lightning-badge>
+                            </template>
+                            <template if:false={bookingData.seatNumber}>
+                                <span class="slds-text-color_weak">No seat selected</span>
+                            </template>
+                        </p>
+                    </div>
+
+                    <!-- Seat Map Component -->
+                    <c-seat-map
+                        schedule-id={scheduleId}
+                        onseatselect={handleSeatSelect}>
+                    </c-seat-map>
+
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            label="Previous"
+                            icon-name="utility:back"
+                            onclick={handlePrevious}
+                            class="slds-m-right_small">
+                        </lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            label="Next: Payment"
+                            icon-name="utility:forward"
+                            icon-position="right"
+                            onclick={handleNext}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Step 3: Payment -->
+            <template if:true={isStep3}>
+                <div class="step-container">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                        <lightning-icon icon-name="standard:account" size="small" class="slds-m-right_small"></lightning-icon>
+                        Payment Details
+                    </h2>
+
+                    <!-- Booking Summary -->
+                    <div class="slds-box slds-theme_shade slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">Booking Summary</h3>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <p><strong>Passenger:</strong> {bookingData.firstName} {bookingData.lastName}</p>
+                                <p><strong>Email:</strong> {bookingData.email}</p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <p><strong>Phone:</strong> {bookingData.phone}</p>
+                                <p><strong>Seat:</strong> {bookingData.seatNumber}</p>
+                            </div>
+                        </div>
+                        <div class="slds-m-top_small slds-text-heading_medium">
+                            <strong>Total Amount: ₹{bookingData.amount}</strong>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="slds-form">
+                        <lightning-radio-group
+                            label="Select Payment Method"
+                            options={paymentMethodOptions}
+                            value={bookingData.paymentMethod}
+                            onchange={handlePaymentMethodChange}
+                            type="button">
+                        </lightning-radio-group>
+                    </div>
+
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            label="Previous"
+                            icon-name="utility:back"
+                            onclick={handlePrevious}
+                            class="slds-m-right_small">
+                        </lightning-button>
+                        <lightning-button
+                            variant="success"
+                            label="Pay & Confirm Booking"
+                            icon-name="utility:moneybag"
+                            onclick={handlePayment}
+                            disabled={isSaving}>
+                        </lightning-button>
+                        <template if:true={isSaving}>
+                            <lightning-spinner alternative-text="Processing Payment" size="small"></lightning-spinner>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Step 4: Confirmation -->
+            <template if:true={isStep4}>
+                <div class="step-container slds-text-align_center">
+                    <div class="slds-m-bottom_large">
+                        <lightning-icon icon-name="utility:success" size="large" class="slds-icon-text-success"></lightning-icon>
+                    </div>
+
+                    <h2 class="slds-text-heading_large slds-m-bottom_small">
+                        Booking Confirmed!
+                    </h2>
+                    <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_large">
+                        Your flight has been booked successfully
+                    </p>
+
+                    <!-- Confirmation Details -->
+                    <template if:true={confirmationDetails}>
+                        <div class="slds-box slds-theme_success slds-m-bottom_medium slds-text-align_left">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Booking Details</h3>
+                            <div class="slds-grid slds-wrap slds-gutters_small">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>PNR Number:</strong><br/>
+                                        <span class="slds-text-heading_medium">{confirmationDetails.pnr}</span>
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Booking ID:</strong><br/>
+                                        {confirmationDetails.bookingId}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Passenger:</strong><br/>
+                                        {confirmationDetails.passengerName}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Seat Number:</strong><br/>
+                                        {confirmationDetails.seatNumber}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Email:</strong><br/>
+                                        {confirmationDetails.email}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Phone:</strong><br/>
+                                        {confirmationDetails.phone}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Payment Method:</strong><br/>
+                                        {confirmationDetails.paymentMethod}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <p class="slds-m-bottom_x-small">
+                                        <strong>Amount Paid:</strong><br/>
+                                        ₹{confirmationDetails.amount}
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <p class="slds-m-top_small">
+                                        <strong>Booking Date:</strong><br/>
+                                        {confirmationDetails.bookingDate}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-text-align_center">
+                            <p class="slds-text-body_regular slds-m-bottom_medium">
+                                A confirmation email has been sent to <strong>{confirmationDetails.email}</strong>
+                            </p>
+
+                            <lightning-button
+                                variant="brand"
+                                label="Book Another Flight"
+                                icon-name="utility:add"
+                                onclick={handleNewBooking}>
+                            </lightning-button>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

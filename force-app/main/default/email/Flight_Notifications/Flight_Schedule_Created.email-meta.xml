@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Flight Schedule Created Notification</name>
+    <style>none</style>
+    <subject>New Flight Schedule: {!Flight_Schedule__c.Name}</subject>
+    <textOnly>Flight Schedule Details:
+
+Flight: {!Flight_Schedule__c.Flight__c}
+Route: {!Flight_Schedule__c.Source_Name__c} to {!Flight_Schedule__c.Destination_Name__c}
+Departure: {!Flight_Schedule__c.Departure_Date_Time__c}
+Arrival: {!Flight_Schedule__c.Arrival_Date_Time__c}
+Status: {!Flight_Schedule__c.Status__c}
+
+This is an automated notification from Airlines Management System.</textOnly>
+    <type>text</type>
+</EmailTemplate>

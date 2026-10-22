@@ -1,0 +1,33 @@
+.user-dashboard {
+    background: #f3f3f3;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.flight-card {
+    background: white;
+    border-left: 4px solid #0070d2;
+    transition: all 0.3s ease;
+}
+
+.flight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flight-results {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.slds-page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.slds-page-header h1,
+.slds-page-header p {
+    color: white;
+}

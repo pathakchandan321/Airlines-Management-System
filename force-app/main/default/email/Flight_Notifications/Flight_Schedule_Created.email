@@ -1,0 +1,16 @@
+Flight Schedule Created
+
+Dear Team,
+
+A new flight schedule has been created.
+
+Flight Details:
+- Flight: {!Flight_Schedule__c.Flight__r.Flight_Name__c}
+- Schedule: {!Flight_Schedule__c.Name}
+- Route: {!Flight_Schedule__c.Source_Name__c} to {!Flight_Schedule__c.Destination_Name__c}
+- Departure: {!Flight_Schedule__c.Departure_Date_Time__c}
+- Arrival: {!Flight_Schedule__c.Arrival_Date_Time__c}
+- Status: {!Flight_Schedule__c.Status__c}
+
+Regards,
+Airlines Management System
